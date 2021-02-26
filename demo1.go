@@ -14,7 +14,7 @@ import "fmt"
 */
 
 func main() {
-	nums := []int{3, 2, 4}
+	nums := []int{3, 7, 5, 3, 4}
 	target := 6
 	value := twoSum2(nums, target)
 	fmt.Println(value)
@@ -22,25 +22,22 @@ func main() {
 
 //标准解题法
 func twoSum(nums []int, target int) []int {
-	kMap := make(map[int]int) //map[value]key
-
+	keyMap := make(map[int]int)
 	for k, v := range nums {
-
-		if mapValue, ok := kMap[v]; ok {
-			fmt.Println(kMap)
-			return []int{mapValue, k}
+		if keyV, ok := keyMap[v]; ok {
+			return []int{keyV, k}
 		}
-		kMap[target-v] = k
+		keyMap[target-v] = k
 	}
 	return nil
 }
 
 // 嵌套循环解题法
 func twoSum2(nums []int, target int) []int {
-	for k := range nums {
+	for k, v := range nums {
 		for i := 0; i < k; i++ {
-			if nums[k] + nums[i] == target{
-				return []int{k,i}
+			if v+nums[i] == target {
+				return []int{k, i}
 			}
 		}
 	}
